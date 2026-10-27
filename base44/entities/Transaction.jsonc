@@ -1,0 +1,103 @@
+{
+  "name": "Transaction",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "income",
+        "expense"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "alimentacao",
+        "moradia",
+        "transporte",
+        "saude",
+        "educacao",
+        "lazer",
+        "compras",
+        "assinaturas",
+        "contas",
+        "investimentos",
+        "salario",
+        "transferencias",
+        "impostos",
+        "outros"
+      ]
+    },
+    "bank": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "extrato"
+      ]
+    }
+  },
+  "required": [
+    "description",
+    "amount",
+    "date",
+    "type",
+    "category"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    }
+  }
+}

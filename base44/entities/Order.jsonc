@@ -1,0 +1,64 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "amount": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "paid", "cancelled"],
+      "default": "pending"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "note": {
+      "type": "string"
+    },
+    "plan": {
+      "type": "string",
+      "enum": ["monthly", "annual", "lifetime"],
+      "description": "Plano escolhido pelo cliente"
+    },
+    "interval": {
+      "type": "string",
+      "enum": ["month", "year", "once"]
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["pix", "card"],
+      "default": "pix"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de expiração do acesso (mensal/anual). Vazio = vitalício."
+    }
+  },
+  "required": ["amount", "status"],
+  "rls": {
+    "read": {
+      "$or": [
+        { "created_by_id": "{{user.id}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

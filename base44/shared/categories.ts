@@ -1,0 +1,33 @@
+export const CATEGORY_VALUES = [
+  'alimentacao',
+  'moradia',
+  'transporte',
+  'saude',
+  'educacao',
+  'lazer',
+  'compras',
+  'assinaturas',
+  'contas',
+  'investimentos',
+  'salario',
+  'transferencias',
+  'impostos',
+  'outros',
+];
+
+export const CATEGORY_LABELS = {
+  alimentacao: 'Alimentação',
+  moradia: 'Moradia',
+  transporte: 'Transporte',
+  saude: 'Saúde',
+  educacao: 'Educação',
+  lazer: 'Lazer',
+  compras: 'Compras',
+  assinaturas: 'Assinaturas',
+  contas: 'Contas e serviços',
+  investimentos: 'Investimentos',
+  salario: 'Salário',
+  transferencias: 'Transferências',
+  impostos: 'Impostos',
+  outros: 'Outros',
+};
